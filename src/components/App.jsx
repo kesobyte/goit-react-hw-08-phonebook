@@ -6,6 +6,7 @@ import { PrivateRoute } from './PrivateRoute/PrivateRoute';
 import { RestrictedRoute } from './RestrictedRoute/RestrictedRoute';
 import { refreshUser } from '../redux/auth/authOperation';
 import { useAuth } from '../hooks/useAuth';
+import { Skeleton, Stack } from '@chakra-ui/react';
 
 // Lazy
 const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
@@ -22,7 +23,10 @@ export const App = () => {
   }, [dispatch]);
 
   return isRefreshing ? (
-    <b>Refreshing user...</b>
+    <Stack>
+      <Skeleton height="55px" />
+      <Skeleton height="500px" m={100} />
+    </Stack>
   ) : (
     <Routes>
       <Route path="/" element={<SharedLayout />}>
