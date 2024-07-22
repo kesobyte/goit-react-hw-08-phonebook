@@ -1,21 +1,12 @@
 .form {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
   max-width: 400px;
   margin: 0 auto;
+  background-color: white;
+  padding: 16px;
+  border-radius: 8px;
+  margin-top: 100px;
 }
 
-.header {
-  text-align: center;
+.formControl {
   margin-bottom: 16px;
-}
-
-.textField {
-  width: 100%;
-}
-
-.button {
-  align-self: center;
-  margin-top: 16px;
 }

@@ -1,12 +1,15 @@
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import { register } from '../../redux/auth/authOperation';
+import {
+  Box,
+  Button,
+  FormControl,
+  FormLabel,
+  Input,
+  Heading,
+} from '@chakra-ui/react';
 import css from './RegisterForm.module.css';
-
-/* Controlled Form Component vs Uncontrolled Form Component
- *
- * Controlled - data is controlled by state
- * Uncontrolled - data is controlled by the DOM
- */
 
 export const RegisterForm = () => {
   const dispatch = useDispatch();
@@ -25,20 +28,33 @@ export const RegisterForm = () => {
   };
 
   return (
-    <form className={css.form} onSubmit={handleSubmit} autoComplete="off">
-      <label className={css.label}>
-        Username
-        <input type="text" name="name" />
-      </label>
-      <label className={css.label}>
-        Email
-        <input type="email" name="email" />
-      </label>
-      <label className={css.label}>
-        Password
-        <input type="password" name="password" />
-      </label>
-      <button type="submit">Register</button>
-    </form>
+    <Box
+      className={css.form}
+      as="form"
+      onSubmit={handleSubmit}
+      autoComplete="off"
+      p={4}
+      boxShadow="md"
+      borderRadius="md"
+    >
+      <Heading as="h2" size="lg" mb={4} textAlign="center">
+        Register
+      </Heading>
+      <FormControl className={css.formControl} mb={3}>
+        <FormLabel>Username</FormLabel>
+        <Input type="text" name="name" />
+      </FormControl>
+      <FormControl className={css.formControl} mb={3}>
+        <FormLabel>Email</FormLabel>
+        <Input type="email" name="email" />
+      </FormControl>
+      <FormControl className={css.formControl} mb={3}>
+        <FormLabel>Password</FormLabel>
+        <Input type="password" name="password" />
+      </FormControl>
+      <Button type="submit" colorScheme="teal" width="full">
+        Register
+      </Button>
+    </Box>
   );
 };
