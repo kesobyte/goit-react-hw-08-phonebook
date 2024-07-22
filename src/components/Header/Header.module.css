@@ -1,7 +1,18 @@
 .header {
+  background-color: #5046e5;
+  color: #fff;
+  padding: 8px 0;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  margin-bottom: 16px;
-  border-bottom: 1px solid #2a363b;
+  padding: 5px 20px;
+}
+
+.userMenu {
+  display: flex;
+  justify-content: left;
+}
+
+.userNav {
+  display: flex;
+  justify-content: right;
 }

@@ -3,7 +3,7 @@ import css from './AuthNav.module.css';
 
 export const AuthNav = () => {
   return (
-    <>
+    <div className={css.menuWrapper}>
       <NavLink
         to="/register"
         className={({ isActive }) => (isActive ? css.linkActive : css.link)}
@@ -16,6 +16,6 @@ export const AuthNav = () => {
       >
         Login
       </NavLink>
-    </>
+    </div>
   );
 };

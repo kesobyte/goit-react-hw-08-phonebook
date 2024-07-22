@@ -40,7 +40,7 @@ export const ContactList = () => {
 
       {!isLoading && !error && filteredContacts.length > 0 && (
         <TableContainer>
-          <Table variant="simple">
+          <Table variant="striped" size="md">
             <Thead>
               <Tr>
                 <Th>Name</Th>

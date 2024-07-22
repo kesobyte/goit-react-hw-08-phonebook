@@ -86,7 +86,7 @@ export const ContactForm = () => {
             <form id="contact-form" onSubmit={handleSubmit}>
               <label>
                 <p>Name</p>
-                <InputGroup mb={3} className={css.inputGroup}>
+                <InputGroup className={css.inputGroup}>
                   <InputLeftElement
                     pointerEvents="none"
                     children={<FaUser className={css.icon} />}
@@ -108,7 +108,7 @@ export const ContactForm = () => {
 
               <label>
                 <p>Number</p>
-                <InputGroup mb={3} className={css.inputGroup}>
+                <InputGroup className={css.inputGroup}>
                   <InputLeftElement
                     children={<FaPhone className={css.icon} />}
                   />

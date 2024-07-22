@@ -1,16 +1,18 @@
-.menuWrapper {
+.menuContainer {
   display: flex;
+  justify-content: center;
 }
 
 .link {
   text-decoration: none;
   padding: 12px;
   font-weight: 700;
-  color: #2a363b;
+  color: #fff;
 }
 
 .linkActive {
   composes: link;
   font-weight: 800;
-  color: #5046e5;
+  background-color: #736be6;
+  border-radius: 8px;
 }
