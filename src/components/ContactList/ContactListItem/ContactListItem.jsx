@@ -1,7 +1,10 @@
 import PropTypes from 'prop-types';
-import css from './ContactListItem.module.css';
 import { useDispatch } from 'react-redux';
 import { deleteContact } from '../../../redux/contacts/contactsOperation';
+
+// Chakra UI
+import { Tr, Td, Button } from '@chakra-ui/react';
+import css from './ContactListItem.module.css';
 
 export const ContactListItem = ({ filteredContact }) => {
   const dispatch = useDispatch();
@@ -12,15 +15,19 @@ export const ContactListItem = ({ filteredContact }) => {
   };
 
   return (
-    <>
-      <li className={css.list_item}>
-        <p>{filteredContact.name}:</p>
-        <p>{filteredContact.number}</p>
-        <button className={css.deleteBtn} onClick={handleDelete}>
+    <Tr>
+      <Td>{filteredContact.name}</Td>
+      <Td>{filteredContact.number}</Td>
+      <Td>
+        <Button
+          colorScheme="red"
+          onClick={handleDelete}
+          className={css.deleteBtn}
+        >
           Delete
-        </button>
-      </li>
-    </>
+        </Button>
+      </Td>
+    </Tr>
   );
 };
 

@@ -1,30 +1,32 @@
-.form_container {
-  border: 1px solid black;
-  padding: 10px;
-  width: 30%;
-  border-radius: 4px;
-  margin: 10px 0;
+.filter {
   display: flex;
-  flex-direction: column;
-  gap: 10px;
-  font-weight: 500;
+  justify-content: left;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 25px;
 }
 
-.input {
-  width: 90%;
-  padding: 5px 0;
-}
-
-.submitBtn {
-  border: none;
-  padding: 5px 10px;
-  border-radius: 4px;
+.addContact {
   background-color: #5046e5;
-  color: white;
-  font-weight: 600;
-  width: 60%;
+  color: #fff;
 }
 
-.submitBtn:hover {
-  background-color: #2e275d;
+.addContact:hover {
+  background-color: #4135de;
+}
+
+.saveButton {
+  background-color: #5046e5;
+}
+
+.saveButton:hover {
+  background-color: #4135de;
+}
+
+.icon {
+  color: #4c5564;
+}
+
+.inputGroup:focus-within .icon {
+  color: #5046e5;
 }

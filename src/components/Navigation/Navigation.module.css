@@ -1,5 +1,8 @@
+.menuWrapper {
+  display: flex;
+}
+
 .link {
-  display: inline-block;
   text-decoration: none;
   padding: 12px;
   font-weight: 700;

@@ -14,7 +14,6 @@ export const Filter = () => {
 
   return (
     <>
-      <p className={css.label}>Find Contacts by Name</p>
       <DebounceInput
         className={css.searchBox}
         type="text"

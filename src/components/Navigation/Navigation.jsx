@@ -6,7 +6,7 @@ export const Navigation = () => {
   const { isLoggedIn } = useAuth();
 
   return (
-    <>
+    <div className={css.menuWrapper}>
       <NavLink
         to="/"
         className={({ isActive }) => (isActive ? css.linkActive : css.link)}
@@ -22,6 +22,6 @@ export const Navigation = () => {
           Contacts
         </NavLink>
       )}
-    </>
+    </div>
   );
 };

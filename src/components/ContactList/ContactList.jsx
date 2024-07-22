@@ -8,7 +8,17 @@ import {
   selectIsLoading,
 } from '../../redux/selectors';
 import { fetchContacts } from '../../redux/contacts/contactsOperation';
-import css from './ContactList.module.css';
+
+// Chakra UI
+import {
+  Table,
+  Thead,
+  Tbody,
+  Tr,
+  Th,
+  TableContainer,
+  Box,
+} from '@chakra-ui/react';
 
 export const ContactList = () => {
   const filteredContacts = useSelector(selectFilteredContacts);
@@ -21,27 +31,34 @@ export const ContactList = () => {
   }, [dispatch]);
 
   return (
-    <>
-      <ul className={css.status}>
-        {/* If loading and not error, show Loader */}
-        {isLoading && !error && <Loader />}
+    <Box className="css.status">
+      {isLoading && !error && <Loader />}
 
-        {/* If not loading, not error, and filtered contacts is empty, show warning */}
-        {!isLoading && !error && filteredContacts.length === 0 && (
-          <p>No contacts found.</p>
-        )}
+      {!isLoading && !error && filteredContacts.length === 0 && (
+        <p>No contacts found.</p>
+      )}
 
-        {/* If not loading, not error and have atleast 1 fitlered contact, show ContactListItem component */}
-        {!isLoading &&
-          !error &&
-          filteredContacts.length > 0 &&
-          filteredContacts.map(filteredContact => (
-            <ContactListItem
-              key={filteredContact.id}
-              filteredContact={filteredContact}
-            />
-          ))}
-      </ul>
-    </>
+      {!isLoading && !error && filteredContacts.length > 0 && (
+        <TableContainer>
+          <Table variant="simple">
+            <Thead>
+              <Tr>
+                <Th>Name</Th>
+                <Th>Number</Th>
+                <Th>Actions</Th>
+              </Tr>
+            </Thead>
+            <Tbody>
+              {filteredContacts.map(filteredContact => (
+                <ContactListItem
+                  key={filteredContact.id}
+                  filteredContact={filteredContact}
+                />
+              ))}
+            </Tbody>
+          </Table>
+        </TableContainer>
+      )}
+    </Box>
   );
 };

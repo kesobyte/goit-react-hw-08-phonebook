@@ -1,8 +1,26 @@
 import { useState } from 'react';
-import css from './ContactForm.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from '../../redux/contacts/contactsOperation';
+import { Filter } from 'components/Filter/Filter';
 import { selectContacts } from '../../redux/selectors';
+import { FaUser, FaPhone } from 'react-icons/fa';
+
+// Chakra UI
+import {
+  Button,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  Input,
+  InputGroup,
+  InputLeftElement,
+  useDisclosure,
+} from '@chakra-ui/react';
+import css from './ContactForm.module.css';
 
 export const ContactForm = () => {
   const dispatch = useDispatch();
@@ -10,6 +28,9 @@ export const ContactForm = () => {
 
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
+
+  // Chakra UI Modal
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const handleNameChange = e => {
     setName(e.target.value);
@@ -37,62 +58,93 @@ export const ContactForm = () => {
       return;
     }
 
-    // dispatch(addContact({ name: name, number: number }));
     dispatch(addContact({ name, number }));
 
     // Reset form
     setName('');
     setNumber('');
+
+    // Close the modal after submission
+    onClose();
   };
 
   return (
     <>
-      <form className={css.form_container} onSubmit={handleSubmit}>
-        <label>
-          <p>Name</p>
-          <input
-            className={css.input}
-            type="text"
-            name="name"
-            pattern="^[a-zA-Zа-яА-Я]+(([' \-][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan."
-            required
-            // Should always be paired (value and onChange)
-            value={name}
-            onChange={handleNameChange}
-          />
-        </label>
-
-        <label>
-          <p>Number</p>
-          <input
-            className={css.input}
-            type="tel"
-            name="number"
-            pattern="\+?\d{1,4}?[\-.\s]?\(?\d{1,3}?\)?[\-.\s]?\d{1,4}[\-.\s]?\d{1,4}[\-.\s]?\d{1,9}"
-            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-            required
-            // Should always be paired (value and onChange)
-            value={number}
-            onChange={handleNumberChange}
-          />
-        </label>
-
-        <button className={css.submitBtn} type="submit">
+      <div className={css.filter}>
+        <Filter />
+        <Button onClick={onOpen} colorScheme="white" className={css.addContact}>
           Add Contact
-        </button>
-      </form>
+        </Button>
+      </div>
+
+      <Modal isOpen={isOpen} onClose={onClose} isCentered>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Add Contact</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <form id="contact-form" onSubmit={handleSubmit}>
+              <label>
+                <p>Name</p>
+                <InputGroup mb={3} className={css.inputGroup}>
+                  <InputLeftElement
+                    pointerEvents="none"
+                    children={<FaUser className={css.icon} />}
+                  />
+                  <Input
+                    type="text"
+                    name="name"
+                    pattern="^[a-zA-Zа-яА-Я]+(([' \-][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+                    title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan."
+                    required
+                    value={name}
+                    onChange={handleNameChange}
+                    // Chakra UI Attributes
+                    focusBorderColor="#5046e5"
+                    placeholder="Enter contact name"
+                  />
+                </InputGroup>
+              </label>
+
+              <label>
+                <p>Number</p>
+                <InputGroup mb={3} className={css.inputGroup}>
+                  <InputLeftElement
+                    children={<FaPhone className={css.icon} />}
+                  />
+                  <Input
+                    type="tel"
+                    name="number"
+                    pattern="\+?\d{1,4}?[\-.\s]?\(?\d{1,3}?\)?[\-.\s]?\d{1,4}[\-.\s]?\d{1,4}[\-.\s]?\d{1,9}"
+                    title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+                    required
+                    value={number}
+                    onChange={handleNumberChange}
+                    // Chakra UI Attributes
+                    focusBorderColor="#5046e5"
+                    placeholder="Enter contact number"
+                  />
+                </InputGroup>
+              </label>
+            </form>
+          </ModalBody>
+
+          <ModalFooter>
+            <Button
+              colorScheme="white"
+              mr={3}
+              type="submit"
+              form="contact-form"
+              className={css.saveButton}
+            >
+              Save
+            </Button>
+            <Button variant="ghost" onClick={onClose}>
+              Cancel
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
     </>
   );
 };
-
-// ContactForm.propTypes = {
-//   addContact: PropTypes.func.isRequired,
-//   contacts: PropTypes.arrayOf(
-//     PropTypes.shape({
-//       id: PropTypes.string.isRequired,
-//       name: PropTypes.string.isRequired,
-//       number: PropTypes.string.isRequired,
-//     })
-//   ),
-// };
