@@ -10,11 +10,13 @@ export const Header = () => {
   return (
     <>
       <header className={css.header}>
-        <div className={css.menuNav}>
-          <Navigation />
-        </div>
-        <div className={css.userNav}>
-          {isLoggedIn ? <UserMenu /> : <AuthNav />}
+        <div className={css.navWidth}>
+          <div className={css.menuNav}>
+            <Navigation />
+          </div>
+          <div className={css.userNav}>
+            {isLoggedIn ? <UserMenu /> : <AuthNav />}
+          </div>
         </div>
       </header>
     </>

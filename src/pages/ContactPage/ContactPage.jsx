@@ -21,9 +21,9 @@ const ContactPage = () => {
         <title>Contacts</title>
       </Helmet>
       <div className={css.container}>
+        <p className={css.header}>Contacts</p>
         <ContactForm />
-        <div>{isLoading && 'Request in progress...'}</div>
-        <h2>Contacts</h2>
+        <div>{isLoading && ''}</div>
         <ContactList />
       </div>
     </HelmetProvider>

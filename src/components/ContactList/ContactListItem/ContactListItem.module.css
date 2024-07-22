@@ -1,12 +1,13 @@
-.deleteBtn {
-  border: none;
-  padding: 5px 10px;
-  border-radius: 4px;
-  background-color: #5046e5;
-  color: white;
-  font-weight: 600;
+.inputGroup {
+  width: 100%;
 }
 
-.deleteBtn:hover {
-  background-color: #2e275d;
+.icon {
+  color: #a5b0c1 !important;
+}
+
+.saveBtn,
+.deleteBtn,
+.editBtn {
+  margin-right: 8px;
 }

@@ -31,7 +31,7 @@ export const ContactList = () => {
   }, [dispatch]);
 
   return (
-    <Box className="css.status">
+    <Box>
       {isLoading && !error && <Loader />}
 
       {!isLoading && !error && filteredContacts.length === 0 && (
@@ -40,7 +40,7 @@ export const ContactList = () => {
 
       {!isLoading && !error && filteredContacts.length > 0 && (
         <TableContainer>
-          <Table variant="striped" size="md">
+          <Table variant="striped" size="sm">
             <Thead>
               <Tr>
                 <Th>Name</Th>

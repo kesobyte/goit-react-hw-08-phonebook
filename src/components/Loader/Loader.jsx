@@ -1,5 +1,14 @@
-import { PulseLoader } from 'react-spinners';
+import React from 'react';
+import { Skeleton } from '@chakra-ui/react';
+import css from './Loader.module.css';
 
 export const Loader = () => {
-  return <PulseLoader color="#5046e5" size={12} speedMultiplier={1} />;
+  return (
+    <div className={css.loaderContainer}>
+      <Skeleton height="40px" my="10px" />
+      <Skeleton height="40px" my="10px" />
+      <Skeleton height="40px" my="10px" />
+      <Skeleton height="40px" my="10px" />
+    </div>
+  );
 };

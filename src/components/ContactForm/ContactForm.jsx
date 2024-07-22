@@ -71,10 +71,10 @@ export const ContactForm = () => {
   return (
     <>
       <div className={css.filter}>
-        <Filter />
         <Button onClick={onOpen} colorScheme="white" className={css.addContact}>
           Add Contact
         </Button>
+        <Filter />
       </div>
 
       <Modal isOpen={isOpen} onClose={onClose} isCentered>
@@ -102,6 +102,7 @@ export const ContactForm = () => {
                     // Chakra UI Attributes
                     focusBorderColor="#5046e5"
                     placeholder="Enter contact name"
+                    mb={5}
                   />
                 </InputGroup>
               </label>

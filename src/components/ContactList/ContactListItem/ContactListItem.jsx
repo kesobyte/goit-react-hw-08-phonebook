@@ -1,22 +1,27 @@
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   deleteContact,
   editContact,
 } from '../../../redux/contacts/contactsOperation';
 import { selectContacts } from '../../../redux/selectors';
-
-// Chakra UI
 import {
   Tr,
   Td,
-  Button,
+  IconButton,
   Input,
   InputGroup,
   InputLeftElement,
 } from '@chakra-ui/react';
-import { FaUser, FaPhone } from 'react-icons/fa';
+import {
+  FaUser,
+  FaPhone,
+  FaEdit,
+  FaTrashAlt,
+  FaSave,
+  FaTimes,
+} from 'react-icons/fa';
 import css from './ContactListItem.module.css';
 
 export const ContactListItem = ({ filteredContact }) => {
@@ -27,19 +32,15 @@ export const ContactListItem = ({ filteredContact }) => {
   const [name, setName] = useState(filteredContact.name);
   const [number, setNumber] = useState(filteredContact.number);
 
-  // Handle Delete
   const handleDelete = () => {
     dispatch(deleteContact(filteredContact.id));
   };
 
-  // Handle Edit Toggle
   const handleEditToggle = () => {
     setIsEditing(!isEditing);
   };
 
-  // Handle Save
   const handleSave = () => {
-    // Check if the edited contact name already exists
     const existingContact = contacts.find(
       contact =>
         contact.name.toLowerCase() === name.toLowerCase() &&
@@ -112,36 +113,42 @@ export const ContactListItem = ({ filteredContact }) => {
       <Td>
         {isEditing ? (
           <>
-            <Button
+            <IconButton
+              aria-label="Save"
+              icon={<FaSave />}
               size="sm"
               colorScheme="blue"
               onClick={handleSave}
               className={css.saveBtn}
-            >
-              Save
-            </Button>
-            <Button size="sm" variant="ghost" onClick={handleEditToggle}>
-              Cancel
-            </Button>
+              mr={2}
+            />
+            <IconButton
+              aria-label="Cancel"
+              icon={<FaTimes />}
+              size="sm"
+              variant="ghost"
+              onClick={handleEditToggle}
+            />
           </>
         ) : (
           <>
-            <Button
+            <IconButton
+              aria-label="Delete"
+              icon={<FaTrashAlt />}
               size="sm"
               colorScheme="red"
               onClick={handleDelete}
               className={css.deleteBtn}
-            >
-              Delete
-            </Button>
-            <Button
+              mr={2}
+            />
+            <IconButton
+              aria-label="Edit"
+              icon={<FaEdit />}
               size="sm"
               colorScheme="blue"
               onClick={handleEditToggle}
               className={css.editBtn}
-            >
-              Edit
-            </Button>
+            />
           </>
         )}
       </Td>

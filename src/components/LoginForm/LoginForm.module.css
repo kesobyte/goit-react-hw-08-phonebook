@@ -1,9 +1,20 @@
 .form {
-  width: 320px;
+  width: 400px;
+  margin: 0 auto;
+  background-color: #ffffff;
+  padding: 16px;
+  border-radius: 8px;
 }
 
-.label {
-  display: flex;
-  flex-direction: column;
+.formControl {
   margin-bottom: 16px;
+}
+
+.icon {
+  color: #a5b0c1 !important;
+}
+
+.loginBtn {
+  background-color: #5046e5 !important;
+  color: white !important;
 }
