@@ -1,5 +1,3 @@
-# React homework template
-
 # goit-react-hw-08-phonebook
 
 Culmination of react block
