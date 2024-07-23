@@ -4,10 +4,16 @@
   gap: 8px;
 }
 
-.username {
+.welcome {
   margin-right: 8px;
   font-weight: 500;
   color: #242424;
+}
+
+.username {
+  margin-right: 8px;
+  font-weight: 800;
+  color: #5046e5;
 }
 
 .logoutButton {

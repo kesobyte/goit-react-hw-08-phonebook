@@ -1,7 +1,9 @@
 .main {
   margin: 0 auto;
   height: 100vh;
-  background-color: #f6f6f6;
+  background-image: url(../../images/phonebook-bg.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .container {
