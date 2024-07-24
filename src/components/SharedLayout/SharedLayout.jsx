@@ -2,6 +2,7 @@ import { Outlet } from 'react-router-dom';
 import { Header } from '../Header/Header';
 import { Suspense } from 'react';
 import css from './SharedLayout.module.css';
+import { Footer } from 'components/Footer/Footer';
 
 export const SharedLayout = () => {
   return (
@@ -12,6 +13,7 @@ export const SharedLayout = () => {
           <Outlet />
         </Suspense>
       </div>
+      <Footer />
     </div>
   );
 };

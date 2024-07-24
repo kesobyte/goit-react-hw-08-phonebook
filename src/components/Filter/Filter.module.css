@@ -4,8 +4,10 @@
 }
 
 .searchBox {
-  padding: 5px 10px;
-  width: 30%;
-  border: 1px solid black;
   border-radius: 4px;
+  padding-left: 35px;
+}
+
+.debounceInput {
+  padding: 5px 10px;
 }

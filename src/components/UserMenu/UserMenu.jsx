@@ -31,7 +31,9 @@ export const UserMenu = () => {
 
   return (
     <Box className={css.wrapper}>
-      <Text className={css.username}>Welcome, {user.email}</Text>
+      <Text className={css.welcome}>
+        Welcome, <span className={css.username}>{user.email}</span>
+      </Text>
       <IconButton
         aria-label="Logout"
         icon={<FiLogOut />}

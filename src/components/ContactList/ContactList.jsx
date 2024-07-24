@@ -8,6 +8,7 @@ import {
   selectIsLoading,
 } from '../../redux/selectors';
 import { fetchContacts } from '../../redux/contacts/contactsOperation';
+import css from './ContactList.module.css';
 
 // Chakra UI
 import {
@@ -35,7 +36,7 @@ export const ContactList = () => {
       {isLoading && !error && <Loader />}
 
       {!isLoading && !error && filteredContacts.length === 0 && (
-        <p>No contacts found.</p>
+        <p className={css.info}>No contacts found.</p>
       )}
 
       {!isLoading && !error && filteredContacts.length > 0 && (

@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
+import ReactDOM from 'react-dom';
 import {
   deleteContact,
   editContact,
@@ -12,7 +13,6 @@ import {
   IconButton,
   Input,
   InputGroup,
-  InputLeftElement,
   AlertDialog,
   AlertDialogBody,
   AlertDialogFooter,
@@ -21,14 +21,7 @@ import {
   AlertDialogOverlay,
   Button,
 } from '@chakra-ui/react';
-import {
-  FaUser,
-  FaPhone,
-  FaEdit,
-  FaTrashAlt,
-  FaSave,
-  FaTimes,
-} from 'react-icons/fa';
+import { FaEdit, FaTrashAlt, FaSave, FaTimes } from 'react-icons/fa';
 import css from './ContactListItem.module.css';
 
 export const ContactListItem = ({ filteredContact }) => {
@@ -69,18 +62,46 @@ export const ContactListItem = ({ filteredContact }) => {
     setIsEditing(false);
   };
 
+  const renderDeleteDialog = () => (
+    <AlertDialog
+      isOpen={isDeleteDialogOpen}
+      leastDestructiveRef={cancelRef}
+      onClose={() => setIsDeleteDialogOpen(false)}
+    >
+      <AlertDialogOverlay>
+        <AlertDialogContent>
+          <AlertDialogHeader fontSize="lg" fontWeight="bold">
+            Delete Contact
+          </AlertDialogHeader>
+
+          <AlertDialogBody>
+            Are you sure you want to delete this contact? This action cannot be
+            undone.
+          </AlertDialogBody>
+
+          <AlertDialogFooter>
+            <Button
+              ref={cancelRef}
+              onClick={() => setIsDeleteDialogOpen(false)}
+            >
+              Cancel
+            </Button>
+            <Button colorScheme="red" onClick={handleDelete} ml={3}>
+              Delete
+            </Button>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialogOverlay>
+    </AlertDialog>
+  );
+
   return (
     <>
       <Tr>
         <Td>
           {isEditing ? (
             <InputGroup className={css.inputGroup}>
-              <InputLeftElement
-                pointerEvents="none"
-                children={<FaUser className={css.icon} />}
-              />
               <Input
-                htmlSize={15}
                 width="auto"
                 type="text"
                 name="name"
@@ -91,6 +112,8 @@ export const ContactListItem = ({ filteredContact }) => {
                 onChange={e => setName(e.target.value)}
                 focusBorderColor="#5046e5"
                 placeholder="Enter contact name"
+                size="sm"
+                className={css.editInput}
               />
             </InputGroup>
           ) : (
@@ -100,12 +123,7 @@ export const ContactListItem = ({ filteredContact }) => {
         <Td>
           {isEditing ? (
             <InputGroup className={css.inputGroup}>
-              <InputLeftElement
-                pointerEvents="none"
-                children={<FaPhone className={css.icon} />}
-              />
               <Input
-                htmlSize={15}
                 width="auto"
                 type="tel"
                 name="number"
@@ -116,6 +134,8 @@ export const ContactListItem = ({ filteredContact }) => {
                 onChange={e => setNumber(e.target.value)}
                 focusBorderColor="#5046e5"
                 placeholder="Enter contact number"
+                size="sm"
+                className={css.editInput}
               />
             </InputGroup>
           ) : (
@@ -165,38 +185,8 @@ export const ContactListItem = ({ filteredContact }) => {
           )}
         </Td>
       </Tr>
-      <>
-        <AlertDialog
-          isOpen={isDeleteDialogOpen}
-          leastDestructiveRef={cancelRef}
-          onClose={() => setIsDeleteDialogOpen(false)}
-        >
-          <AlertDialogOverlay>
-            <AlertDialogContent>
-              <AlertDialogHeader fontSize="lg" fontWeight="bold">
-                Delete Contact
-              </AlertDialogHeader>
 
-              <AlertDialogBody>
-                Are you sure you want to delete this contact? This action cannot
-                be undone.
-              </AlertDialogBody>
-
-              <AlertDialogFooter>
-                <Button
-                  ref={cancelRef}
-                  onClick={() => setIsDeleteDialogOpen(false)}
-                >
-                  Cancel
-                </Button>
-                <Button colorScheme="red" onClick={handleDelete} ml={3}>
-                  Delete
-                </Button>
-              </AlertDialogFooter>
-            </AlertDialogContent>
-          </AlertDialogOverlay>
-        </AlertDialog>
-      </>
+      {ReactDOM.createPortal(renderDeleteDialog(), document.body)}
     </>
   );
 };
